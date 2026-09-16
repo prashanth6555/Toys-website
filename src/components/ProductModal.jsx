@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Minus, Plus, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useStore } from '../context/StoreContext'
 
 const rupee = (n) => `₹${n.toLocaleString('en-IN')}`
@@ -8,6 +8,16 @@ const rupee = (n) => `₹${n.toLocaleString('en-IN')}`
 export default function ProductModal() {
   const { activeProduct, setActiveProduct, addToCart, toggleWishlist, isWished } = useStore()
   const [qty, setQty] = useState(1)
+  const [shot, setShot] = useState(0)
+
+  const shots = activeProduct
+    ? [activeProduct.image, ...(activeProduct.gallery || [])]
+    : []
+
+  useEffect(() => {
+    setShot(0)
+    setQty(1)
+  }, [activeProduct?.id])
 
   return (
     <AnimatePresence>
@@ -30,11 +40,36 @@ export default function ProductModal() {
             onClick={(e) => e.stopPropagation()}
             className="grid max-h-[92dvh] w-full max-w-3xl overflow-y-auto rounded-[2rem] bg-white shadow-2xl md:grid-cols-2"
           >
-            <img
-              src={activeProduct.image}
-              alt={activeProduct.name}
-              className="h-64 w-full object-cover md:h-full"
-            />
+            <div className="relative">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={shots[shot]}
+                  src={shots[shot]}
+                  alt={activeProduct.name}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="h-64 w-full object-cover md:h-full"
+                />
+              </AnimatePresence>
+              {shots.length > 1 && (
+                <div className="absolute bottom-3 left-3 right-3 flex gap-2">
+                  {shots.map((src, i) => (
+                    <button
+                      key={src + i}
+                      type="button"
+                      onClick={() => setShot(i)}
+                      className={`h-12 w-12 overflow-hidden rounded-xl ring-2 transition ${
+                        shot === i ? 'ring-sun' : 'ring-white/70 opacity-80'
+                      }`}
+                    >
+                      <img src={src} alt="" className="h-full w-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <div className="relative p-6">
               <button
                 type="button"

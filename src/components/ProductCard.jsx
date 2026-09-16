@@ -27,6 +27,7 @@ export default function ProductCard({ product, index = 0 }) {
           alt={product.name}
           className="h-52 w-full object-cover transition duration-500 group-hover:scale-110"
         />
+        <span className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/0 via-white/25 to-white/0 opacity-0 transition duration-500 group-hover:opacity-100" />
         <span className="absolute top-3 left-3 rounded-full bg-sun px-3 py-1 text-[11px] font-extrabold text-ink">
           {product.badge}
         </span>

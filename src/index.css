@@ -89,6 +89,20 @@ body {
   }
 }
 
+@keyframes blobmorph {
+  0%,
+  100% {
+    border-radius: 42% 58% 55% 45% / 48% 42% 58% 52%;
+  }
+  50% {
+    border-radius: 58% 42% 38% 62% / 42% 58% 42% 58%;
+  }
+}
+
+.animate-blob {
+  animation: blobmorph 8s ease-in-out infinite;
+}
+
 .animate-floaty {
   animation: floaty 4.5s ease-in-out infinite;
 }
@@ -139,7 +153,8 @@ body {
 
   .animate-floaty,
   .animate-floaty-slow,
-  .animate-wiggle {
+  .animate-wiggle,
+  .animate-blob {
     animation: none;
   }
 }

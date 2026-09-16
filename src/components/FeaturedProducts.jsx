@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { products, categories } from '../data/siteData'
 import { useStore } from '../context/StoreContext'
 import ProductCard from './ProductCard'
@@ -31,11 +32,22 @@ export default function FeaturedProducts() {
             </button>
           ))}
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {list.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-        </div>
+        <motion.div layout className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <AnimatePresence mode="popLayout">
+            {list.map((product, i) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ delay: (i % 4) * 0.04 }}
+              >
+                <ProductCard product={product} index={i} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   )

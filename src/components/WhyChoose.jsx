@@ -20,17 +20,29 @@ export default function WhyChoose() {
             return (
               <motion.article
                 key={item.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 40, rotate: -2 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="rounded-[1.6rem] bg-white p-5 shadow-md"
+                transition={{ delay: i * 0.08, type: 'spring', stiffness: 180, damping: 18 }}
+                whileHover={{ y: -10, rotate: 1 }}
+                className="group overflow-hidden rounded-[1.6rem] bg-white shadow-md"
               >
-                <span className={`mb-4 grid h-12 w-12 place-items-center rounded-2xl text-white ${item.accent}`}>
-                  <Icon size={22} />
-                </span>
-                <h3 className="font-display text-lg">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/65">{item.text}</p>
+                <div className="relative h-28 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                  />
+                  <span
+                    className={`absolute bottom-3 left-3 grid h-11 w-11 place-items-center rounded-2xl text-white shadow-lg ${item.accent}`}
+                  >
+                    <Icon size={20} />
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-display text-lg">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">{item.text}</p>
+                </div>
               </motion.article>
             )
           })}

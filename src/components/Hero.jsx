@@ -75,23 +75,31 @@ export default function Hero() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7 }}
-            className="blob absolute inset-8 bg-gradient-to-br from-sun via-coral to-grape shadow-2xl"
+            className="blob animate-blob absolute inset-8 bg-gradient-to-br from-sun via-coral to-grape shadow-2xl"
           />
           <motion.img
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            initial={{ y: 40, opacity: 0, rotate: 10 }}
+            animate={{ y: [0, -12, 0], opacity: 1, rotate: 6 }}
+            transition={{ delay: 0.2, y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut' } }}
             src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=900&q=80"
             alt="Colorful building toys"
-            className="absolute top-10 right-6 h-56 w-44 rotate-6 rounded-[2rem] object-cover shadow-2xl md:h-72 md:w-56"
+            className="absolute top-10 right-6 h-56 w-44 rounded-[2rem] object-cover shadow-2xl md:h-72 md:w-56"
           />
           <motion.img
             initial={{ x: -30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.35 }}
+            animate={{ x: 0, y: [0, 10, 0], opacity: 1 }}
+            transition={{ delay: 0.35, y: { duration: 5.2, repeat: Infinity, ease: 'easeInOut' } }}
             src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=700&q=80"
             alt="Soft teddy toy"
             className="absolute bottom-8 left-2 h-48 w-40 -rotate-6 rounded-[2rem] object-cover shadow-2xl md:h-64 md:w-52"
+          />
+          <motion.img
+            initial={{ scale: 0.6, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, y: [0, -8, 0] }}
+            transition={{ delay: 0.5, y: { duration: 3.8, repeat: Infinity, ease: 'easeInOut' } }}
+            src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=500&q=80"
+            alt="Kids toys on the floor"
+            className="absolute top-1/2 left-1/2 h-28 w-28 -translate-x-1/2 -translate-y-8 rounded-3xl object-cover shadow-xl ring-4 ring-white md:h-36 md:w-36"
           />
           <span className="animate-floaty absolute top-6 left-10 text-5xl md:text-6xl">🚀</span>
           <span className="animate-floaty-slow absolute right-4 bottom-24 text-5xl">🧸</span>

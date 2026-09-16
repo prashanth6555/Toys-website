@@ -28,10 +28,17 @@ export default function SpecialOffers() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          whileHover={{ scale: 1.02 }}
           className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-grape via-coral to-peach p-8 text-white shadow-xl md:p-12"
         >
+          <img
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=900&q=80"
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-25"
+          />
           <span className="animate-floaty absolute top-6 right-8 text-5xl">🎁</span>
           <span className="animate-floaty-slow absolute bottom-8 left-8 text-4xl">🪀</span>
+          <div className="relative">
           <p className="text-sm font-extrabold tracking-[0.2em] uppercase">Festival sale</p>
           <h3 className="font-display mt-3 text-4xl md:text-5xl">Up to 40% off seasonal toys</h3>
           <p className="mt-3 max-w-md text-white/85">
@@ -50,15 +57,23 @@ export default function SpecialOffers() {
           >
             Shop the sale
           </a>
+          </div>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
+          whileHover={{ scale: 1.02 }}
           className="relative overflow-hidden rounded-[2rem] bg-mint p-8 text-ink shadow-xl md:p-12"
         >
-          <span className="animate-wiggle absolute top-8 right-10 text-5xl">🧸</span>
+          <img
+            src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?auto=format&fit=crop&w=900&q=80"
+            alt="Plush teddy"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30"
+          />
+          <span className="animate-wiggle absolute top-8 right-10 z-10 text-5xl">🧸</span>
+          <div className="relative">
           <p className="text-sm font-extrabold tracking-[0.2em] text-white uppercase">Bundle & save</p>
           <h3 className="font-display mt-3 text-4xl text-white">Buy 2 plush, get 1 extra hug</h3>
           <p className="mt-3 max-w-md text-white/90">
@@ -70,6 +85,7 @@ export default function SpecialOffers() {
           >
             Explore plush
           </a>
+          </div>
         </motion.div>
       </div>
     </section>
